@@ -1,6 +1,8 @@
 const express = require("express");
 const Router = express.Router();
 
+// res.send()：服务器端有数据返回到客户端
+
 /* 数据接口（路由） */
 // 增加商品
 Router.post("/", (req, res) => {
