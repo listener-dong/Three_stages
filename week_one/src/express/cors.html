@@ -15,8 +15,10 @@
         xhr.onload = () => {
             console.log(xhr.response);
         }
-        xhr.open("get", "http://localhost:1906/cors", true);
-        xhr.send();
+        xhr.open("post", "http://localhost:1906/cors", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.setRequestHeader("token", "1234");
+        xhr.send("username=laoxie&password=123");
     </script>
 </body>
 

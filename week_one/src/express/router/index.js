@@ -38,9 +38,11 @@ Router.use("/cors", corsRouter);
 // 引入模块
 const request = require("request");
 const cheerio = require("cheerio");
+const fs = require("fs");
+const path = require("path"); //获取图片的名字
 Router.get("/spider", (req, res) => {
     request('http://search.lefeng.com/search/showresult?keyword=%E9%9D%A2%E8%86%9C', (error, response, body) => {
-        console.log(body)
+        // console.log(body)
         // 执行load方法载入获取到的html结构
         let $ = cheerio.load(body);
         let goodslist = [];
@@ -52,6 +54,14 @@ Router.get("/spider", (req, res) => {
             o.src = $ele.find("dt img").attr("src");
             o.oldprice = $ele.find(".spri").text();
             o.price = $ele.find(".price").text();
+
+            // 获取文件名
+            let filename = path.basename(o.src);
+
+            // 爬取图片
+            request(o.src).pipe(fs.createWriteStream("./img/" + filename));
+
+            o.src = "img/" + filename;
             goodslist.push(o);
         })
         res.send(goodslist);

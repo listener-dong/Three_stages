@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function callback(data) {
+            // console.log(data.result.wall.docs);
+            let arrData = data.result.wall.docs;
+            let arr = [];
+            arrData.forEach(element => {
+                let o = {};
+                o.src = element.img;
+                o.title = element.title;
+                o.orgPrice = element.orgPrice;
+                o.price = element.price;
+
+                arr.push(o);
+            });
+            // document.write(data.result.wall.docs);
+            document.write(JSON.stringify(arr));
+        }
+    </script>
+    <script
+        src="https://list.mogu.com/search?callback=callback&_version=8193&ratio=3%3A4&cKey=15&page=1&sort=pop&ad=0&fcid=50240&action=clothing&acm=3.mce.1_10_1hf4o.109499.0.gGQ8erzbdkRgo.pos_0-m_406352-sd_119-mf_15261_1133027-idx_0-mfs_34-dm1_5000&ptp=31._mf1_1239_15261.0.0.Pl5HCR7v&_=1565836752051">
+    </script>
+</body>
+
+</html>
