@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>动态组件</title>
+    <script src="./js/vue.js"></script>
+    <style>
+        #app img {
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>动态组件</h1>
+    <div id="app">
+        <button v-for="item in users" v-on:click="current=item">{{item}}</button>
+        <!-- <template v-bind:is="current"></template> -->
+        <component v-bind:is="current"></component>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                users: ["laoxie", "jingjing", "dingding"],
+                current: "laoxie"
+            },
+            components: {
+                laoxie: {
+                    data() {
+                        return {
+                            username: "laoxie",
+                            url: "./img/laoxie.jpg"
+                        }
+                    },
+                    template: `<div><img :src="url">{{username}}</div>`,
+                },
+                jingjing: {
+                    data() {
+                        return {
+                            username: "jingjing",
+                            url: "./img/jingjing.png"
+                        }
+                    },
+                    template: `<div><img :src="url">{{username}}</div>`,
+                },
+                dingding: {
+                    data() {
+                        return {
+                            username: "dingding",
+                            url: "./img/dingding.jpg"
+                        }
+                    },
+                    template: `<div><img :src="url">{{username}}</div>`,
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

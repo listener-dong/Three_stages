@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>12.keep-alive缓存组件</title>
+    <script src="./js/vue.js"></script>
+    <style>
+        #app img {
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>12.keep-alive缓存组件</h1>
+    <div id="app">
+        <button v-for="item in users" v-on:click="current=item">{{item}}</button>
+        <keep-alive :include="['jingjing','dingding']">
+            <components :is="current"></components>
+        </keep-alive>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                users: ["laoxie", "jingjing", "dingding"],
+                current: "laoxie"
+            },
+            components: {
+                laoxie: {
+                    data() {
+                        return {
+                            username: "laoxie",
+                            url: "./img/laoxie.jpg",
+                            age: 18
+                        }
+                    },
+                    template: `<div><img :src="url"><p>{{username}}<button @click="age--">改变年龄{{age}}</button></p></div>`,
+                },
+                jingjing: {
+                    data() {
+                        return {
+                            username: "jingjing",
+                            url: "./img/jingjing.png",
+                            age: 30
+                        }
+                    },
+                    template: `<div><img :src="url"><p>{{username}}<button @click="age--">改变年龄{{age}}</button></p></div>`,
+                },
+                dingding: {
+                    data() {
+                        return {
+                            username: "dingding",
+                            url: "./img/dingding.jpg",
+                            age: 28
+                        }
+                    },
+                    template: `<div><img :src="url"><p>{{username}}<button @click="age--">改变年龄{{age}}</button></p></div>`,
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

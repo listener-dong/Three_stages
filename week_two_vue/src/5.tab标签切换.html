@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>tab标签切换</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <script src="./js/vue.js"></script>
+    <style>
+        .mytabs img {
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <div class="mytabs container-fluid">
+            <h1>tab标签切换</h1>
+            <ul class="nav nav-tabs">
+                <li class="nav-item" v-for="(item,idx) in tabs">
+                    <a class="nav-link" :class="{active:idx===activeIdx}" href="#"
+                        @click="changeIdx(idx,$event)">{{item.name}}</a>
+                </li>
+            </ul>
+            <div v-for="(item,idx) in tabs" class="p-3 border" v-show="idx===activeIdx">
+                <img :src="item.imgurl" alt="">
+                <p>
+                    {{item.name+'最爱'+item.hobby}}
+                </p>
+            </div>
+        </div>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                activeIdx: 0,
+                tabs: [{
+                    name: 'laoxie',
+                    imgurl: 'img/laoxie.jpg',
+                    hobby: '写代码'
+                }, {
+                    name: 'jingjing',
+                    imgurl: 'img/jingjing.png',
+                    hobby: '做运动'
+                }, {
+                    name: 'tingting',
+                    imgurl: 'img/tingting.jpg',
+                    hobby: '大保健'
+                }, {
+                    name: 'dingding',
+                    imgurl: 'img/dingding.jpg',
+                    hobby: '跟tingting大保健'
+                }, {
+                    name: 'lemon',
+                    imgurl: 'img/lemon.jpg',
+                    hobby: '删库跑路'
+                }]
+            },
+            methods: {
+                changeIdx(idx, e) {
+                    // console.log(idx, e);
+                    this.activeIdx = idx;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

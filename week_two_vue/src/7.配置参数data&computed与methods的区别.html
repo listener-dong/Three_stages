@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>配置参数data&computed与methods的区别</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <h1>配置参数data&computed与methods的区别</h1>
+    <div id="app">
+        <h4 class="price">价格：<del>{{price}}</del><span>{{salePrice}}</span></h4>
+        <input v-model="price">
+        <p>computed:{{cnow}}</p>
+        <p>methods:{{mnow()}}</p>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                price: 998
+            },
+            computed: {
+                cnow() {
+                    return Date.now();
+                },
+                salePrice() {
+                    return this.price * 0.5
+                }
+            },
+            methods: {
+                mnow() {
+                    return Date.now();
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

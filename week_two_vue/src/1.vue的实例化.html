@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue的实例化</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <h1>vue的实例化</h1>
+    <div id="app">
+        <h2>{{name}}</h2>
+    </div>
+    <template id="mytemplate">
+        <div>
+            <p>{{num}}</p>
+            <button v-on:click="changeNum">点我有惊喜</button>
+        </div>
+    </template>
+    <script>
+        let data = {
+            name: "chenxudong",
+            age: 18,
+            address: "GuangZhou",
+            num: 10
+        }
+        new Vue({
+            // 配置参数
+            el: "#app",
+            data: data,
+            template: "#mytemplate",
+            methods: {
+                changeNum: function () {
+                    this.num++;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

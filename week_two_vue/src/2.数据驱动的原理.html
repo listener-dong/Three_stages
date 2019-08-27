@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数据驱动的原理</title>
+    <script src="./js/vue.js"></script>
+    <style>
+        #app img {
+            width: 300px;
+            border: 4px solid #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>数据驱动的原理</h1>
+    <div id="app">
+        <h4>{{username}}</h4>
+        <img v-bind:src="touxiang" alt="">
+        <div> <button v-on:click="show('jingjing')">静静</button>
+            <button v-on:click="show('dingding')">顶顶</button>
+            <button v-on:click="show('laoxie')">老谢</button></div>
+        {{info}}
+    </div>
+    <script>
+        let data = {
+            username: "jingjing",
+            touxiang: "img/jingjing.png",
+            info: {
+                password: "123",
+                gender: "女"
+            }
+        }
+        let vm = new Vue({
+            el: "#app",
+            data,
+            methods: {
+                show(name) {
+                    this.username = name;
+                    this.touxiang = 'img/' + name + (name === 'jingjing' ? '.png' : '.jpg')
+                }
+            }
+        })
+
+        // 传统方式定义的属性，属性特性为true
+        let obj = {
+            username: "chenxudong"
+        }
+        // 设置一个不允许改变的属性
+        Object.defineProperty(obj, "age", {
+            value: 19
+        })
+    </script>
+</body>
+
+</html>

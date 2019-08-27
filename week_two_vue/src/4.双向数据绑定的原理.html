@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>双向数据绑定的原理</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <h1>双向数据绑定的原理</h1>
+    <div id="app">
+        <p>单向数据绑定：{{username}}</p>
+        <p>双向数据绑定：<input type="text" v-bind:value="username" v-on:input="changeUsername"></p>
+    </div>
+
+    <script>
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                username: "chenxudong"
+            },
+            methods: {
+                changeUsername(e) {
+                    this.username = e.target.value;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

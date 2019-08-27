@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>实例化属性与配置参数</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <h1>实例化属性与配置参数</h1>
+    <div id="app">
+        <p>原数据：{{username}}</p>
+        <p>方法倒序：{{reverseUsername()}}</p>
+        <p>computed倒序：{{rusername}}</p>
+        <input type="text" v-model="username">
+    </div>
+    <script>
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                username: "chenxudong",
+                password: 123456,
+                use: "pengpeng"
+            },
+            computed: {
+                // 这里的数据为存储器属性
+                rusername: {
+                    get() {
+                        return this.username.split('').reverse().join('')
+                    },
+                    set(val) {
+                        this.username = val;
+                    }
+                }
+            },
+            methods: {
+                show() {
+                    this.password
+                },
+                reverseUsername() {
+                    return this.username.split("").reverse().join("");
+                }
+            }
+        })
+        vm.$on("hello", () => {
+            console.log("hello world");
+        })
+        vm.$off("hello guangzhou");
+    </script>
+</body>
+
+</html>

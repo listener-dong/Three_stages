@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<h1>生命周期</h1>
+<div id="app">
+    {{message}}
+</div>
+<script>
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            message: "chenxudong from guangdong"
+        },
+        beforeCreate: function () {
+            console.group("beforeCreate 创建状态前===========》");
+            console.log("el:", this.$el);
+            console.log("data:", JSON.stringify(this.$data));
+            console.log("message:", this.message);
+            console.groupEnd();
+        },
+        created: function () {
+            console.group("created 创建状态后===========》");
+            console.log("el:", this.$el);
+            console.log("data:", JSON.stringify(this.$data));
+            console.log("message:", this.message);
+            console.groupEnd();
+        },
+        beforeMount: function () {
+            console.group("beforeMount 挂载前===========》");
+            console.log("el:", this.$el);
+            console.log("data:", JSON.stringify(this.$data));
+            console.log("message:", this.message);
+            console.groupEnd();
+        },
+        mounted: function () {
+            console.group("mounted 挂载后===========》");
+            console.log("el:", this.$el);
+            console.log("data:", JSON.stringify(this.$data));
+            console.log("message:", this.message);
+            console.groupEnd();
+        },
+        beforeUpdate: function () {
+            console.group("beforeUpdate 更新前===========》");
+            console.log("el:", this.$el);
+            console.log("data:", JSON.stringify(this.$data));
+            console.log("message:", this.message);
+            console.groupEnd();
+        },
+        updated: function () {
+            console.group("Updated 更新后===========》");
+            console.log("el:", this.$el);
+            console.log("data:", JSON.stringify(this.$data));
+            console.log("message:", this.message);
+            console.groupEnd();
+        },
+        beforeDestroy: function () {
+            console.group("beforeDestroy 销毁前===========》");
+            console.log("el:", this.$el);
+            console.log("data:", JSON.stringify(this.$data));
+            console.log("message:", this.message);
+            console.groupEnd();
+        },
+        destroyed: function () {
+            console.group("destroyed 销毁后===========》");
+            console.log("el:", this.$el);
+            console.log("data:", JSON.stringify(this.$data));
+            console.log("message:", this.message);
+            console.groupEnd();
+        }
+
+    })
+</script>
+
+<body>
+
+</body>
+
+</html>

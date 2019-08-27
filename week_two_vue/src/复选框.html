@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <div id="app">
+        <p>
+            全选：
+        </p>
+        <input type="checkbox" id="checkbox" v-model="checked" @change="changeAllChecked()">
+        <label for="checkbox">
+            {{checked}}
+        </label>
+        <p>
+            多个复选框：
+        </p>
+        <input type="checkbox" id="runoob" value="Runoob" v-model="checkedNames">
+        <label for="runoob">
+            Runoob
+        </label>
+        <input type="checkbox" id="google" value="Google" v-model="checkedNames">
+        <label for="google">
+            Google
+        </label>
+        <!-- value的值给到v-model的数组中 -->
+        <input type="checkbox" id="taobao" value="chenxudong" v-model="checkedNames">
+        <label for="taobao">
+            taobao
+        </label>
+        <br>
+        <span>
+            选择的值为:{{checkedNames}}
+        </span>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                checked: false,
+                checkedNames: [],
+                checkedArr: ["Runoob", "Taobao", "Google"],
+                use: "chenxudong"
+            },
+            methods: {
+                changeAllChecked: function () {
+                    if (this.checked) {
+                        this.checkedNames = this.checkedArr
+                    } else {
+                        this.checkedNames = []
+                    }
+                }
+            },
+            watch: {
+                "checkedNames": function () {
+                    if (this.checkedNames.length == this.checkedArr.length) {
+                        this.checked = true
+                    } else {
+                        this.checked = false
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

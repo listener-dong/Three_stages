@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>todolist待办事项</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h1>todolist待办事项</h1>
+        <div id="app">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Recipient's username" v-model="keyword" ref="key"
+                    @keyup.13="additem">
+                <div class="input-group-append">
+                    <button class="btn btn-success" type="button" @click="additem">添加</button>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">待办事项</th>
+                        <th scope="col">完成时间</th>
+                        <th scope="col">是否完成</th>
+                        <th scope="col">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item,idx) in datalist" :class="{'table-primary':item.done}">
+                        <th scope="row">{{idx+1}}</th>
+                        <td>{{item.content}}</td>
+                        <td>{{item.time}}</td>
+                        <td>{{item.done?'是':'否'}}</td>
+                        <td>
+                            <div class="btn-group btn-group-sm">
+                                <button type="button" class="btn btn-outline-primary"
+                                    @click="complitem(idx)">完成</button>
+                                <button type="button" class="btn btn-outline-danger"
+                                    @click="removeitem(idx)">删除</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                datalist: [{
+                    content: '完成Vue团队项目',
+                    time: '2019-9-9',
+                    done: false,
+                }],
+                keyword: "" //上面页面用到了这个变量，所以要声明
+            },
+            methods: {
+                additem() {
+                    let data = {
+                        content: this.keyword,
+                        time: Date.now(),
+                        done: false
+                    }
+                    this.datalist.push(data);
+
+                    // 清空并获取焦点
+                    this.keyword = "";
+                    this.$refs.key.focus();
+                },
+                removeitem(idx) {
+                    this.datalist.splice(idx, 1);
+                },
+                complitem(idx) {
+                    this.datalist[idx].done = true;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
